@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>doxxed</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=VT323&family=Press+Start+2P&display=swap');
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background: #000;
+            color: #fff;
+            overflow: hidden;
+            font-family: 'VT323', monospace;
+        }
+
+        .main {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 10;
+        }
+
+        h1 {
+            font-size: 15vw;
+            margin: 0;
+            letter-spacing: 12px;
+            text-transform: uppercase;
+            color: #ffffff;
+            text-shadow: 
+                0 0 10px #fff,
+                0 0 30px #ff00ff,
+                0 0 50px #00ffff,
+                0 0 80px #ff0000;
+            animation: glitch 0.8s infinite alternate;
+        }
+
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-4px, 4px); }
+            40% { transform: translate(4px, -4px); }
+            60% { transform: translate(-2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
+        }
+
+        .scanline {
+            position: fixed;
+            top: -100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(transparent, rgba(0, 255, 100, 0.08), transparent);
+            animation: scan 3s linear infinite;
+            pointer-events: none;
+        }
+
+        .noise {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://i.imgur.com/8v5v7vK.png');
+            opacity: 0.07;
+            mix-blend-mode: screen;
+            pointer-events: none;
+            animation: noise 0.4s steps(5) infinite;
+        }
+
+        @keyframes scan {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(300%); }
+        }
+
+        .sub {
+            margin-top: 30px;
+            font-size: 22px;
+            letter-spacing: 6px;
+            opacity: 0.8;
+            animation: flicker 1.5s infinite;
+        }
+
+        @keyframes flicker {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 0.4; }
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 25px;
+            width: 100%;
+            text-align: center;
+            font-size: 16px;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="noise"></div>
+    <div class="scanline"></div>
+
+    <div class="main">
+        <h1>doxxed</h1>
+        <div class="sub">YOU HAVE BEEN COMPROMISED</div>
+    </div>
+
+    <div class="footer">
+        IP TRACED • LOCATION LEAKED • DATA BREACHED
+    </div>
+
+    <script>
+        // Click hoặc nhấn phím để glitch mạnh
+        document.addEventListener('click', glitchEffect);
+        document.addEventListener('keydown', glitchEffect);
+
+        function glitchEffect() {
+            const title = document.querySelector('h1');
+            title.style.transition = 'none';
+            title.style.transform = 'translate(8px, -8px)';
+            
+            setTimeout(() => {
+                title.style.transition = 'transform 80ms';
+                title.style.transform = 'translate(-6px, 6px)';
+            }, 50);
+            
+            setTimeout(() => {
+                title.style.transform = 'translate(0)';
+            }, 180);
+        }
+    </script>
+</body>
+</html>
